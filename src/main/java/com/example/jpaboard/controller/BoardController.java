@@ -84,8 +84,9 @@ public class BoardController {
 	
 	@GetMapping("/board/deleteBoard")
 	public String deleteBoard(@RequestParam int boardNo) {
-		Board board = boardRepository.findById(boardNo).orElse(null);
-		boardRepository.delete(board);
+//		Board board = boardRepository.findById(boardNo).orElse(null);
+//		boardRepository.delete(board);
+		boardRepository.deleteById(boardNo);
 		return "redirect:/board/boardList";
 	}
 }

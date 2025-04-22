@@ -1,6 +1,6 @@
 package com.example.jpaboard.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,14 @@ public class ArticleController {
 	@Autowired // 의존성주입
 	private ArticleRepository articleRepository;
 
+	@GetMapping("/articles/sqlTest")
+	public String sqlTest(Model model) {
+		Map<String, Object> map = articleRepository.getMinMaxCount("a%");
+		log.debug(map.toString());
+		model.addAttribute("map", map);
+		return "articles/sqlTest";
+	}
+	
 	@GetMapping("/articles/new") // doGet()
 	public String newArticleForm() {
 		return "articles/new"; // forward
